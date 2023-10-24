@@ -1,0 +1,19 @@
+{
+    "editor.codeActionsOnSave": {
+        "source.organizeImports": true,
+    },
+    "files.exclude": {
+        "**/.dart_tool/": true,
+        "**/.idea/": true,
+        "**/.flutter-plugins": true,
+        "**/.flutter-plugins-dependencies": true,
+        "**/.metadata": true,
+        "**/*.iml": true,
+        "**/analysis_options.yaml": true,
+        "**/build": true,
+        "**/coverage": true,
+        "**/pubspec.lock": true,
+        "**/pubspec_overrides.yaml": true,
+    },
+    "testing.automaticallyOpenPeekView": "never",
+}

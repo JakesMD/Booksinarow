@@ -1,0 +1,51 @@
+name: booksinarow
+
+packages:
+  - packages/**
+  - app/**
+
+ignore:
+  - "packages/**/example"
+
+scripts:
+  get:
+    description: Runs 'flutter packages get' in the specified package(s).
+    exec: flutter packages get
+    packageFilters:
+      fileExists: pubspec.yaml
+
+  format:
+    description: Formats the code of the specified package(s).
+    exec: dart format --set-exit-if-changed lib test
+    packageFilters:
+      fileExists: pubspec.yaml
+
+  analyze:
+    description: Analyzes the code of the specified package(s).
+    exec: flutter analyze lib test
+    packageFilters:
+      fileExists: pubspec.yaml
+
+  test:
+    description: Runs all the tests of the specified package(s).
+    exec: flutter test --coverage --no-pub --test-randomize-ordering-seed random
+    packageFilters:
+      fileExists: pubspec.yaml
+
+  check_coverage:
+    description: Combines the test coverage from all of the packages and checks for 100% coverage.
+    run: |
+      true > \$MELOS_ROOT_PATH/coverage/lcov.info
+      dart pub global run combine_coverage --repo-path=$MELOS_ROOT_PATH
+      sed -i '' 's|SF:.*/booksinarow/|SF:/|' $MELOS_ROOT_PATH/coverage/lcov.info
+      dart pub global run remove_from_coverage --file=$MELOS_ROOT_PATH/coverage/lcov.info --remove='\.g\.dart$'
+      dart $MELOS_ROOT_PATH/bin/check_coverage.dart $MELOS_ROOT_PATH/coverage/lcov.info
+
+  ci:
+    description: The procedure of the GitHub CI workflow. Run this before pushing to GitHub.
+    run: |
+      melos get --no-select
+      melos format --no-select
+      melos analyze --no-select
+      melos test --no-select
+      melos check_coverage

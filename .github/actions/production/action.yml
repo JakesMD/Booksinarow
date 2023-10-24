@@ -1,0 +1,12 @@
+name: production
+description: production
+
+runs:
+  using: "composite"
+
+  steps:
+    - name: 🏗️ Build Production App
+      shell: bash
+      run: |
+        cd app
+        flutter build apk --target lib/main_production.dart
