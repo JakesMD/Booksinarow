@@ -1,4 +1,4 @@
-package com.example.verygoodcore.booksinarow
+package jakesmd.booksinarow.app
 
 import io.flutter.embedding.android.FlutterActivity
 
