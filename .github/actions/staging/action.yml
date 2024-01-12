@@ -7,6 +7,36 @@ runs:
   steps:
     - name: 🏗️ Build Staging App
       shell: bash
-      run: |
-        cd app
-        flutter build apk --target lib/main_staging.dart
+      run: melos build_staging
+
+    # - name: ⚡️ Setup Supabase
+    #   if: ${{ github.actor != 'dependabot[bot]' }}
+    #   uses: supabase/setup-cli@v1
+    #   with:
+    #     version: latest
+
+    # - name: 🗃️ Push Database Changes
+    #   if: ${{ github.actor != 'dependabot[bot]' }}
+    #   shell: bash
+    #   run: |
+    #     supabase link --project-ref ${{ env.SUPABASE_PROJECT_ID }}
+    #     supabase db push
+
+    # - name: 🔥 Setup Firebase Tools
+    #   shell: bash
+    #   run: |
+    #     sudo npm install -g firebase-tools
+    #     cd app
+    #     firebase use ${{ env.FIREBASE_PROJECT_ID }}
+
+    # - name: 🚀 Deploy Firebase Hosting
+    #   shell: bash
+    #   run: |
+    #     cd app
+    #     firebase deploy --only hosting:staging --non-interactive -m "RunID ${{ env.RUN_ID }} Commit SHA ${{ env.SHA }}"
+
+    # - name: 🚚 Distribute App
+    #   shell: bash
+    #   run: |
+    #     cd app
+    #     firebase appdistribution:distribute build/app/outputs/flutter-apk/app-staging-release.apk --app ${{ env.FIREBASE_ANDROID_STAGING_APP_ID }} --groups "staging-android" --non-interactive
