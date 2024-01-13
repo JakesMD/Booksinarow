@@ -7,6 +7,34 @@ runs:
   steps:
     - name: 🏗️ Build Production App
       shell: bash
-      run: |
-        cd app
-        flutter build apk --target lib/main_production.dart
+      run: melos build_production
+
+    # - name: ⚡️ Setup Supabase
+    #   uses: supabase/setup-cli@v1
+    #   with:
+    #     version: latest
+
+    # - name: 🗃️ Push Database Changes
+    #   shell: bash
+    #   run: |
+    #     supabase link --project-ref ${{ env.SUPABASE_PROJECT_ID }}
+    #     supabase db push
+
+    # - name: 🔥 Setup Firebase Tools
+    #   shell: bash
+    #   run: |
+    #     sudo npm install -g firebase-tools
+    #     cd app
+    #     firebase use ${{ env.FIREBASE_PROJECT_ID }}
+
+    # - name: 🚀 Deploy Firebase Hosting
+    #   shell: bash
+    #   run: |
+    #     cd app
+    #     firebase deploy --only hosting:production --non-interactive -m "RunID ${{ env.RUN_ID }} Commit SHA ${{ env.SHA }}"
+
+    # - name: 🚚 Distribute App
+    #   shell: bash
+    #   run: |
+    #     cd app
+    #     firebase appdistribution:distribute build/app/outputs/flutter-apk/app-production-release.apk --app ${{ env.FIREBASE_ANDROID_PRODUCTION_APP_ID }} --groups "production-android" --non-interactive

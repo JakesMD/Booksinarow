@@ -2,12 +2,15 @@ name: booksinarow
 
 packages:
   - packages/**
-  - app/**
-
-ignore:
-  - "packages/**/example"
+  - app/
 
 scripts:
+  clean_up:
+    description: Cleans the the specified package(s).
+    exec: flutter clean
+    packageFilters:
+      fileExists: pubspec.yaml
+
   get:
     description: Runs 'flutter packages get' in the specified package(s).
     exec: flutter packages get
@@ -16,13 +19,13 @@ scripts:
 
   format:
     description: Formats the code of the specified package(s).
-    exec: dart format --set-exit-if-changed lib test
+    exec: dart format . #--set-exit-if-changed
     packageFilters:
       fileExists: pubspec.yaml
 
   analyze:
     description: Analyzes the code of the specified package(s).
-    exec: flutter analyze lib test
+    exec: flutter analyze
     packageFilters:
       fileExists: pubspec.yaml
 
@@ -30,22 +33,45 @@ scripts:
     description: Runs all the tests of the specified package(s).
     exec: flutter test --coverage --no-pub --test-randomize-ordering-seed random
     packageFilters:
-      fileExists: pubspec.yaml
+      dirExists: test
 
   check_coverage:
     description: Combines the test coverage from all of the packages and checks for 100% coverage.
     run: |
       true > \$MELOS_ROOT_PATH/coverage/lcov.info
       dart pub global run combine_coverage --repo-path=$MELOS_ROOT_PATH
-      sed -i '' 's|SF:.*/booksinarow/|SF:/|' $MELOS_ROOT_PATH/coverage/lcov.info
+      sed -i '' 's|SF:.*/batchbase2/|SF:/|' $MELOS_ROOT_PATH/coverage/lcov.info
       dart pub global run remove_from_coverage --file=$MELOS_ROOT_PATH/coverage/lcov.info --remove='\.g\.dart$'
       dart $MELOS_ROOT_PATH/bin/check_coverage.dart $MELOS_ROOT_PATH/coverage/lcov.info
+
+  build_staging:
+    run: |
+      cd $MELOS_ROOT_PATH/app
+      flutter build apk --target=lib/main_staging.dart --flavor=staging
+
+  build_production:
+    run: |
+      cd $MELOS_ROOT_PATH/app
+      flutter build apk --target=lib/main_production.dart --flavor=production
 
   ci:
     description: The procedure of the GitHub CI workflow. Run this before pushing to GitHub.
     run: |
-      melos get --no-select
-      melos format --no-select
-      melos analyze --no-select
-      melos test --no-select
-      melos check_coverage
+      echo "'melos format' currently does NOT fail if files are changed. This is because 'dart format' doesn't ignore generated files in 'bcore' for an unknown reason."
+      flutter upgrade
+      flutter pub global activate melos
+      flutter pub global activate combine_coverage
+      flutter pub global activate remove_from_coverage
+      melos clean_up --no-select && melos get --no-select && melos format --no-select && melos analyze --no-select && melos test --no-select && melos check_coverage && melos build_staging && melos build_production
+
+  gen-l10n:
+    description: Generates the translations for the specified package(s).
+    exec: flutter gen-l10n
+    packageFilters:
+      dirExists: lib/src/l10n
+
+  outdated:
+    description: Upgrades outdated packages in the specified package(s).
+    exec: flutter pub outdated
+    packageFilters:
+      fileExists: pubspec.yaml

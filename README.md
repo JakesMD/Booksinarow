@@ -1,3 +1,3 @@
 # Booksinarow
 
-![workflow badge](https://github.com/Booksinarow/Booksinarow/actions/workflows/main.yml/badge.svg)
+![workflow badge](https://github.com/JakesMD/Booksinarow/actions/workflows/main.yml/badge.svg)
