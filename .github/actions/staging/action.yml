@@ -9,18 +9,18 @@ runs:
       shell: bash
       run: melos build_staging
 
-    # - name: ⚡️ Setup Supabase
-    #   if: ${{ github.actor != 'dependabot[bot]' }}
-    #   uses: supabase/setup-cli@v1
-    #   with:
-    #     version: latest
+    - name: ⚡️ Setup Supabase
+      if: ${{ github.actor != 'dependabot[bot]' }}
+      uses: supabase/setup-cli@v1
+      with:
+        version: latest
 
-    # - name: 🗃️ Push Database Changes
-    #   if: ${{ github.actor != 'dependabot[bot]' }}
-    #   shell: bash
-    #   run: |
-    #     supabase link --project-ref ${{ env.SUPABASE_PROJECT_ID }}
-    #     supabase db push
+    - name: 🗃️ Push Database Changes
+      if: ${{ github.actor != 'dependabot[bot]' }}
+      shell: bash
+      run: |
+        supabase link --project-ref ${{ env.SUPABASE_PROJECT_ID }}
+        supabase db push
 
     # - name: 🔥 Setup Firebase Tools
     #   shell: bash

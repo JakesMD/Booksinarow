@@ -47,3 +47,6 @@
 .branches
 .temp
 .env
+
+# Other
+secrets.md
