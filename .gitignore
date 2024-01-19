@@ -44,6 +44,6 @@
 **/android/app/release
 
 # Supabase
-.branches
-.temp
-.env
+**/.branches
+**/.temp
+**/.env
