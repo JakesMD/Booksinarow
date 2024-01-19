@@ -44,10 +44,6 @@
 **/android/app/release
 
 # Supabase
-.branches
-.temp
-.env
-
-# Other
-secrets.md
-**/secrets.dart
+**/.branches
+**/.temp
+**/.env

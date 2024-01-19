@@ -6,11 +6,13 @@ environment:
 
 dependencies:
   bpub:
+  envied: ^0.5.3
   flutter:
     sdk: flutter
 
 dev_dependencies:
   bpub_dev:
+  envied_generator: ^0.5.3
 
 flutter:
   uses-material-design: true

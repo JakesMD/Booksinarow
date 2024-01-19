@@ -8,7 +8,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   await Supabase.initialize(
-    url: BSecrets.productionDatabaseURL,
+    url: BSecrets.productionDatabaseUrl,
     anonKey: BSecrets.productionDatabaseAnonKey,
   );
 
