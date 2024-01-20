@@ -9,16 +9,16 @@ runs:
       shell: bash
       run: melos build_production
 
-    - name: ⚡️ Setup Supabase
-      uses: supabase/setup-cli@v1
-      with:
-        version: latest
+    # - name: ⚡️ Setup Supabase
+    #   uses: supabase/setup-cli@v1
+    #   with:
+    #     version: latest
 
-    - name: 🗃️ Push Database Changes
-      shell: bash
-      run: |
-        supabase link --project-ref ${{ env.SUPABASE_PROJECT_ID }}
-        supabase db push
+    # - name: 🗃️ Push Database Changes
+    #   shell: bash
+    #   run: |
+    #     supabase link --project-ref ${{ env.SUPABASE_PROJECT_ID }}
+    #     supabase db push
 
     # - name: 🔥 Setup Firebase Tools
     #   shell: bash
