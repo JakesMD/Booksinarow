@@ -1,0 +1,5 @@
+include: package:bpub_dev/very_good_analysis.yaml
+
+analyzer:
+  language:
+    strict-inference: false
