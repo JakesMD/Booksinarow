@@ -1,4 +1,0 @@
-# melos_managed_dependency_overrides: bpub_dev
-dependency_overrides:
-  bpub_dev:
-    path: ../pub_dev
