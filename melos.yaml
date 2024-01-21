@@ -11,6 +11,7 @@ scripts:
       mkdir -p .vscode
       cp $MELOS_ROOT_PATH/.vscode/settings.json .vscode/
       if test -d test; then cp $MELOS_ROOT_PATH/.vscode/test.code-snippets .vscode/; fi
+      cp $MELOS_ROOT_PATH/analysis_options.yaml analysis_options.yaml
     packageFilters:
       fileExists: pubspec.yaml
 
