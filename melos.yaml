@@ -5,6 +5,15 @@ packages:
   - app/
 
 scripts:
+  update_settings:
+    description: Copies the latest .vscode/setting.json file into all the packages.
+    exec: |
+      mkdir -p .vscode
+      cp $MELOS_ROOT_PATH/.vscode/settings.json .vscode/
+      if test -d test; then cp $MELOS_ROOT_PATH/.vscode/test.code-snippets .vscode/; fi
+    packageFilters:
+      fileExists: pubspec.yaml
+
   clean_up:
     description: Cleans the the specified package(s).
     exec: flutter clean
