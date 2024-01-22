@@ -9,5 +9,5 @@ dependencies:
   flutter_test:
     sdk: flutter
   mocktail: ^1.0.0
-  test_beautifier: ^0.1.0+1
+  test_beautifier: ^1.0.0+1
   very_good_analysis: ^5.1.0

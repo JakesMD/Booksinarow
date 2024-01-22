@@ -11,8 +11,10 @@ runs:
         flutter pub global activate melos
         flutter pub global activate combine_coverage
         flutter pub global activate remove_from_coverage
+        melos bootstrap
         melos run clean_up --no-select
         melos get --no-select
+        melos update_settings
 
     - name: ✨ Check Formatting
       shell: bash

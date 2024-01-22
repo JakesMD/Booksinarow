@@ -1,9 +1,11 @@
-name: booksinarow
+name: bauth_repository
 
 environment:
   sdk: ">=3.1.0 <4.0.0"
 
+dependencies:
+  bauth_client:
+  bpub:
+
 dev_dependencies:
   bpub_dev:
-    path: packages/core/pub_dev
-  melos: ^4.0.0

@@ -20,6 +20,7 @@
 # VS Code which you may wish to be included in version control, so this line
 # is commented out by default.
 **/packages/**/.vscode/
+app/.vscode/settings.json
 
 # Flutter/Dart/Pub related
 **/doc/api/
@@ -33,6 +34,9 @@
 **/build/
 **/coverage/
 app/lib/secrets.g.dart
+app/analysis_options.yaml
+packages/**/analysis_options.yaml
+**/pubspec_overrides.yaml
 
 # Symbolication related
 **/app.*.symbols

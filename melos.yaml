@@ -11,6 +11,7 @@ scripts:
       mkdir -p .vscode
       cp $MELOS_ROOT_PATH/.vscode/settings.json .vscode/
       if test -d test; then cp $MELOS_ROOT_PATH/.vscode/test.code-snippets .vscode/; fi
+      cp $MELOS_ROOT_PATH/analysis_options.yaml analysis_options.yaml
     packageFilters:
       fileExists: pubspec.yaml
 
@@ -71,7 +72,11 @@ scripts:
       flutter pub global activate melos
       flutter pub global activate combine_coverage
       flutter pub global activate remove_from_coverage
-      melos clean_up --no-select && melos get --no-select && melos format --no-select && melos analyze --no-select && melos test --no-select && melos check_coverage && melos build_staging && melos build_production
+      melos bootstrap
+      melos clean_up --no-select
+      melos get --no-select
+      melos update_settings
+      melos format --no-select && melos analyze --no-select && melos test --no-select && melos check_coverage && melos build_staging && melos build_production
 
   gen-l10n:
     description: Generates the translations for the specified package(s).
