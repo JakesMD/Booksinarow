@@ -1,5 +1,5 @@
 /// An exception thrown when a sign-out fails.
-enum BRawSignOutException {
+enum BSignOutException {
   /// Indicates the cause in unknown.
   unknown,
 }

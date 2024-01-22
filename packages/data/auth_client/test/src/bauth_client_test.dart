@@ -50,7 +50,7 @@ void main() {
           Then: 'returns none',
         ),
         procedure(() async {
-          var result = none<BRawUser>();
+          var result = some(const BRawUser(id: '', email: ''));
           client.currentUser().listen((event) => result = event);
 
           controller.add(AuthState(AuthChangeEvent.signedOut, null));

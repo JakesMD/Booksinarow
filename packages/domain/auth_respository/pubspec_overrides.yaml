@@ -1,8 +1,0 @@
-# melos_managed_dependency_overrides: bauth_client,bpub,bpub_dev
-dependency_overrides:
-  bauth_client:
-    path: ../../data/auth_client
-  bpub:
-    path: ../../core/pub
-  bpub_dev:
-    path: ../../core/pub_dev
